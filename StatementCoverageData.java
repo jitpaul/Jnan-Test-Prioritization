@@ -12,11 +12,12 @@ public class StatementCoverageData {
 	static final HashMap<String,Integer> hMap = new HashMap<>();
 	static ValueComparator bvc = new ValueComparator(hMap);
 	static TreeMap <String, Integer> sorted_map = new TreeMap <String, Integer> (bvc);
-	static List<String> tests = new ArrayList<String>();
+	static List<String> testsTotal = new ArrayList<String>();
+	static List<String> testsAdditional = new ArrayList<String>();
 	
 	public static void testExecuted(String className, String methodName) 
 	{
-		  key = className + "." + methodName;
+		  key = className;
 		  h.put(key,new HashSet<>());
 	}
 	
@@ -28,7 +29,7 @@ public class StatementCoverageData {
 	}
 	
 	
-	public static void totalPriorIntoFile()
+	public static List<String> totalPriorIntoFile()
 	{	
 		
 		try 
@@ -45,6 +46,7 @@ public class StatementCoverageData {
 		  for (String key : sorted_map.keySet())
 	      {		  
   		     writer.write("" + key);
+			 testsTotal.add(key);
              writer.write(System.getProperty("line.separator"));	
 		  }		  
 		  writer.close();
@@ -53,6 +55,7 @@ public class StatementCoverageData {
 		{
 			ex.printStackTrace();
 		}
+		return testsTotal;	
 	}
 	
 	public static void prioritize(String keyCurrent)
@@ -84,7 +87,7 @@ public class StatementCoverageData {
 		  {	          		    
 			keyCurrent = ""+sorted_map.keySet().toArray()[0];			
 		    writer.write(keyCurrent);
-			tests.add(keyCurrent);
+			testsAdditional.add(keyCurrent);
 		    writer.write(System.getProperty("line.separator"));
 			hMap.remove(keyCurrent);
 		    prioritize(keyCurrent);
@@ -99,7 +102,7 @@ public class StatementCoverageData {
 		{
 			 ex.printStackTrace();
 		}
-        return tests;		
+        return testsAdditional;		
 	}
 }
 

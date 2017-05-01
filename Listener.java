@@ -31,9 +31,8 @@ public class Listener extends RunListener
 	//  Called when all tests have finished
 	public void testRunFinished(Result result) throws java.lang.Exception
 	{
-		StatementCoverageData.totalPriorIntoFile();
-		//List <String> tests = StatementCoverageData.additionalPriorIntoFile();
-		GenerateTestSuiteForJUnit4.generate("tests", "TestSuite", StatementCoverageData.additionalPriorIntoFile());
+		GenerateTestSuiteForJUnit4.generate("T_TestSuite", StatementCoverageData.totalPriorIntoFile());
+		GenerateTestSuiteForJUnit4.generate("A_TestSuite", StatementCoverageData.additionalPriorIntoFile());
 	}
 
 	//  Called when an atomic test is about to be started.	 
