@@ -45,4 +45,9 @@ public class Listener extends RunListener
 	{
         //StatementCoverageData.writeIntoFile();
     }
+	
+	 public void testFailure(Failure failure) throws Exception 
+	{
+        System.exit(0);
+    }
 }
