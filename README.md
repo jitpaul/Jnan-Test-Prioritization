@@ -17,29 +17,26 @@ The tool uses ASM byte-code manipulation framework to manipulate the bytecode. B
 Java Agent which makes use of the Intrumentation API. A JUnit listener is used to to capture the start and end events for each JUnit
 test method. The agent jar file and the JUnit listener class can be integrated with any maven project to perform code coverage. This is done by updating the pom.xml file present in the maven project rool directory.
 
-In order to use the tool on your maven project, please follow the below steps.
+In order to use the tool with your maven project, please follow the below steps.
 
-A) Following needs to be added to the pom.xml file.
-   1) Replace [path-to-your-agent.jar] with your java agent jar’s absolute path, and 
-   replace [YourListener] with your JUnit listener’s full name.
+A) Following needs to be added to the 'pom.xml' file.
+   1) Add the below code snippet to include the 'JPAgent.jar' file and the 'Listener.java' file as plugins.
    ```
    <plugin>
    <groupId>org.apache.maven.plugins</groupId>
    <artifactId>maven-surefire-plugin</artifactId>
    <configuration>
-   <argLine>-javaagent:[path-to-your-agent.jar]</argLine>
+   <argLine>-javaagent:JPAgent.jar</argLine>
    <properties>
    <property>
    <name>listener</name>
-   <value>[YourListener]</value>
+   <value>org.apache.commons.dbutils.Listener</value>
    </property>
    </properties>
    </configuration>
    </plugin>
    ```
-   2) Add the agent.jar file as a dependency as it is used by the 'Listener.java' file. 
-   (The following dependency was written for my 'JPAgent.jar' file which is attached 
-   in the repository for your reference)
+   2) Add the 'JPAgent.jar' file as a dependency as it is used by the 'Listener.java' file. 
    ```
    <dependency>
    <artifactId>TestCompetition.JavaAgent</artifactId>
@@ -66,15 +63,15 @@ A) Following needs to be added to the pom.xml file.
    <scope>test</scope>
    </dependency>
    ```
-B) Place the JPAgent.jar file in the root folder of the project under test.
+B) Place the 'JPAgent.jar' file in the root folder of the project under test.
 
-C) Place the listener.java file under the test folder.
+C) Place the 'listener.java' file under the test folder. ('commons-dbutils-trunk\src\test\java\org\apache\commons\dbutils\')
 
 D) Execute 'mvn test' command.
    After successful execution, you can see four new files generated into the root folder of the test project.
    'total_prior.txt', 'additional_prior.txt', 'A_TestSuite.java', 'T_TestSuite.java'
    
-E) Place the 'A_TestSuite.java', 'T_TestSuite.java' in the test folder (same location as listener.java)
+E) Place the 'A_TestSuite.java', 'T_TestSuite.java' files in the test folder (same location as listener.java)
 
 D) Execute 'mvn test -Dtest=T_TestSuite' to execute tests based on total prioritization.
    Execute 'mvn test -Dtest=A_TestSuite' to execute tests based on additional prioritization.
