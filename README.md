@@ -73,8 +73,7 @@ D) Execute 'mvn test' command.
    
 E) Place the 'A_TestSuite.java', 'T_TestSuite.java' files in the test folder (same location as listener.java)
 
-D) Execute 'mvn test -Dtest=T_TestSuite' to execute tests based on total prioritization.
-
+D) Execute 'mvn test -Dtest=T_TestSuite' to execute tests based on total prioritization.'\n'
    Execute 'mvn test -Dtest=A_TestSuite' to execute tests based on additional prioritization.
 
 
