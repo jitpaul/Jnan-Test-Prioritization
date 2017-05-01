@@ -74,8 +74,9 @@ D) Execute 'mvn test' command.
 E) Place the 'A_TestSuite.java', 'T_TestSuite.java' files in the test folder (same location as listener.java)
 
 D) Execute 'mvn test -Dtest=T_TestSuite' to execute tests based on total prioritization.
+
    Execute 'mvn test -Dtest=A_TestSuite' to execute tests based on additional prioritization.
 
 
-PS:- A 'JPAgent.jar' file has been attached for reference. This jar file can be directly used with the 'commons-dbutils' project. For other projects, you would need to modfiy a line in the 'MyClassFileTransformer.java' file and re-create the jar file. The jar file contains MethodPrinter.class, ClassPrinter.class, MyClassFileTransformer.class, StatementCoverageData.class, GenerateTestSuiteForJUnit4.class, ValueComparator.class and Agent.class in it.
+PS:- A 'JPAgent.jar' file has been attached for reference. This jar file can be directly used with the 'commons-dbutils' project. For other projects, you would need to modfiy a line (line 17) in the 'MyClassFileTransformer.java' file and re-create the jar file. The jar file contains MethodPrinter.java, ClassPrinter.java, MyClassFileTransformer.java, StatementCoverageData.java', 'GenerateTestSuiteForJUnit4.java' and 'Agent.java' files in it.
 
