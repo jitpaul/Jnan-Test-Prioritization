@@ -17,6 +17,7 @@
 package org.apache.commons.dbutils;
  
 import java.io.*;
+import java.util.*;
 import junit.framework.*;
 import org.junit.runner.Description;
 import org.junit.runner.Result;
@@ -27,12 +28,24 @@ import TestCompetition.JavaAgent.GenerateTestSuiteForJUnit4;
 
 public class Listener extends RunListener
 {
+	long startTime; 
+	ArrayList<Long> list = new ArrayList<Long>();
+	
+	
+	//  Called when all tests have finished
+	public void testRunStarted(Description description) throws java.lang.Exception
+	{
+        startTime = System.currentTimeMillis();
+	}
+	
 	
 	//  Called when all tests have finished
 	public void testRunFinished(Result result) throws java.lang.Exception
 	{
 		GenerateTestSuiteForJUnit4.generate("T_TestSuite", StatementCoverageData.totalPriorIntoFile());
 		GenerateTestSuiteForJUnit4.generate("A_TestSuite", StatementCoverageData.additionalPriorIntoFile());
+		if(!list.isEmpty())
+	   	     System.out.println("First Test Case Failed in : "+ list.get(0)+ " milliseconds");
 	}
 
 	//  Called when an atomic test is about to be started.	 
@@ -47,7 +60,7 @@ public class Listener extends RunListener
     }
 	
 	 public void testFailure(Failure failure) throws Exception 
-	{
-        System.exit(0);
+	{  
+		list.add(System.currentTimeMillis()-startTime);
     }
 }
