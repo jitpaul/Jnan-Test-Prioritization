@@ -46,7 +46,7 @@ A) Following needs to be added to the 'pom.xml' file.
    <systemPath>${basedir}/JPAgent.jar</systemPath>
    </dependency>
    ```
-   3) Add the asm package as a dependency if needed as it is used by multiple files.
+   3) Add the asm package as a dependency as it is used by multiple files.
    ```
    <dependency>
    <groupId>org.ow2.asm</groupId>
@@ -54,7 +54,7 @@ A) Following needs to be added to the 'pom.xml' file.
    <version>5.0.3</version>
    </dependency>
    ```
-   4) Add the junit package as a dependency if needed.
+   4) Add the junit package as a dependency.
    ```
    <dependency>
    <groupId>junit</groupId>
@@ -65,18 +65,26 @@ A) Following needs to be added to the 'pom.xml' file.
    ```
 B) Place the 'JPAgent.jar' file in the root folder of the project under test.
 
-C) Place the 'listener.java' file under the test folder. ('commons-dbutils-trunk\src\test\java\org\apache\commons\dbutils\')
+C) Place the 'Listener.java' file under the test folder. ('commons-dbutils-trunk\src\test\java\org\apache\commons\dbutils\')
 
-D) Execute 'mvn test' command.
+D) Execute 'mvn test' command from the commandline.
    After successful execution, you can see four new files generated into the root folder of the test project.
    'total_prior.txt', 'additional_prior.txt', 'A_TestSuite.java', 'T_TestSuite.java'
    
-E) Place the 'A_TestSuite.java', 'T_TestSuite.java' files in the test folder (same location as listener.java)
+E) Place the 'A_TestSuite.java', 'T_TestSuite.java' files in the test folder (same location as Listener.java)
 
-D) Execute 'mvn test -Dtest=T_TestSuite' to execute tests based on total prioritization.
+D) Execute 'mvn test -Dtest=T_TestSuite' from the commandline to execute tests based on total prioritization.
 
-   Execute 'mvn test -Dtest=A_TestSuite' to execute tests based on additional prioritization.
+   Execute 'mvn test -Dtest=A_TestSuite' from the commandline to execute tests based on additional prioritization.
 
 
-PS:- A 'JPAgent.jar' file has been attached for reference. This jar file can be directly used with the 'commons-dbutils' project. For other projects, you would need to modfiy a line (line 17) in the 'MyClassFileTransformer.java' file and re-create the jar file. The jar file contains MethodPrinter.java, ClassPrinter.java, MyClassFileTransformer.java, StatementCoverageData.java', 'GenerateTestSuiteForJUnit4.java' and 'Agent.java' files in it.
+####PLEASE NOTE:-####
+
+The 'JPAgent.jar' and the 'Listener.java' files that are attached here have been configured for the 'commons-dbutils' project. (https://github.com/apache/commons-dbutils)
+
+For other projects,
+
+->You would need to modfiy a line (line 17) in the 'MyClassFileTransformer.java' file and re-create the jar file. The jar file contains   MethodPrinter.java, ClassPrinter.java, MyClassFileTransformer.java, StatementCoverageData.java', 'GenerateTestSuiteForJUnit4.java' and   'Agent.java' files in it.
+
+->You would also need to add the correct package name (same package name as other java files in the test folder of the project) and      license header to the 'Listener.java' file.
 
