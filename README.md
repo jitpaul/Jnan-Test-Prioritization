@@ -88,5 +88,5 @@ For other projects,
 
 ->You would need to modfiy a line (line 17) in the 'MyClassFileTransformer.java' file and re-create the jar file. The jar file contains   MethodPrinter.java, ClassPrinter.java, MyClassFileTransformer.java, StatementCoverageData.java', 'GenerateTestSuiteForJUnit4.java' and   'Agent.java' files in it.
 
-->You would also need to add the correct package name (same package name as other java files in the test folder of the project) and      license header to the 'Listener.java' file.
+->You would also need to add the packagename  and licenseheader to the 'Listener.java' file. (same packagename and licenseheader as other java files in the test folder of the project)
 
